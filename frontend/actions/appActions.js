@@ -1,5 +1,7 @@
-const appActionTypes = {
-  INIT: 'INIT'
+
+export const appActionTypes = {
+  INIT: 'INIT',
+  CHANGE_STATE: 'CHANGE_STATE'
 }
 
 export const init = _ => {
@@ -10,3 +12,12 @@ export const init = _ => {
           }
         }
 };
+
+export const changeState = editorState => {
+  return {
+    type: appActionTypes.CHANGE_STATE,
+    state: {
+      editorState
+    }
+  }
+}

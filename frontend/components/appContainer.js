@@ -1,21 +1,25 @@
 import React from 'react';
 import { connect, Provider } from 'react-redux';
-import { init } from '../actions/appActions';
+import { EditorPOC } from './editor';
+import { init, changeState } from '../actions/appActions';
 
 export class App extends React.Component {
     componentWillMount(){
-      if (this.props.serverInit) {
+      if (!this.props.serverInit) {
         this.props.init();
       }
     }
+
     render(){
-       return (
-          <div> Your App is here
-          </div>
-       )
+      const { props } = this;
+      return (
+        props.clientRender ?
+          <EditorPOC {...props }/> : false
+      );
     }
 }
+
 const mapStateToProps = (state)=>{
-    return {}
+    return { }
 };
-export const AppContainer = connect(mapStateToProps, { init })(App);
+export const AppContainer = connect(mapStateToProps, { init, changeState })(App);

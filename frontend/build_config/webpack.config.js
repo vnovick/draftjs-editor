@@ -51,8 +51,8 @@ module.exports = {
                 loader: ExtractTextPlugin.extract("css?sourceMap!sass?sourceMap!postcss")
             },
             {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract("css?sourceMap!autoprefixer")
+              test: /\.css$/,
+              loader: 'style!css?sourceMap'
             },
             {
                 test: /\.(ttf|eot|woff|svg|jpe?g|gif|png)[\?]?.*$/,
@@ -100,6 +100,11 @@ module.exports = {
       new webpack.ProvidePlugin({
         React: 'react',
         ReactDOM: 'react-dom'
+      }),
+      new webpack.DefinePlugin({
+        "process.env": {
+          NODE_ENV: JSON.stringify("development")
+        }
       }),
       new ExtractTextPlugin("styles.css")
     ]
