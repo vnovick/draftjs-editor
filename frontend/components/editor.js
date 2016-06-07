@@ -294,7 +294,7 @@ export class EditorPOC extends React.Component {
         },
         'block-table': {
           element: 'div'
-        },
+        }
       });
       this.state = {
         blockRenderMap: DefaultDraftBlockRenderMap.merge(customBlockRendering),
@@ -316,7 +316,7 @@ export class EditorPOC extends React.Component {
       };
       this.promptForLink = this._promptForLink.bind(this);
       this.onURLChange = (e) => this.setState({urlValue: e.target.value});
-      this.onLinkCaptionChange = (e) => this.setState({linkCaption: e.target.value});
+      // this.onLinkCaptionChange = (e) => this.setState({linkCaption: e.target.value});
       this.confirmLink = this._confirmLink.bind(this);
       this.onLinkInputKeyDown = this._onLinkInputKeyDown.bind(this);
       this.removeLink = this._removeLink.bind(this);
@@ -342,12 +342,14 @@ export class EditorPOC extends React.Component {
     _promptForLink() {
       const {editorState} = this.state;
       const selection = editorState.getSelection();
-      this.setState({
-        showURLInput: true,
-        urlValue: '',
-      }, () => {
-        setTimeout(() => this.refs.caption.focus(), 0);
-      });
+      if (!selection.isCollapsed()) {
+        this.setState({
+          showURLInput: true,
+          urlValue: '',
+        }, () => {
+          setTimeout(() => this.refs.url.focus(), 0);
+        });
+      }
     }
 
     _confirmLink(e) {
@@ -398,7 +400,6 @@ export class EditorPOC extends React.Component {
 
     handleKeyCommand(command) {
     const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
-    console.log(newState)
       if (newState) {
         this.changeState(newState);
         return true;
@@ -485,15 +486,17 @@ export class EditorPOC extends React.Component {
       if (this.state.showURLInput) {
         urlInput =
           <div style={styles.urlInputContainer}>
-            <label>Caption</label>
-            <input
-              onChange={this.onLinkCaptionChange}
-              ref="caption"
-              style={styles.urlInput}
-              type="text"
-              value={this.state.linkCaption}
-              onKeyDown={this.onLinkInputKeyDown}
-            />
+            {
+              // <label>Caption</label>
+              // <input
+              //   onChange={this.onLinkCaptionChange}
+              //   ref="caption"
+              //   style={styles.urlInput}
+              //   type="text"
+              //   value={this.state.linkCaption}
+              //   onKeyDown={this.onLinkInputKeyDown}
+              // />
+            }
             <label>Url</label>
             <input
               onChange={this.onURLChange}
