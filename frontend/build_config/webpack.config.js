@@ -36,6 +36,7 @@ module.exports = {
     devtool: "source-map",
     output: {
         publicPath: 'public/assets',
+        path: './public/assets',
         filename: 'bundle.js',
     },
     devServer: {

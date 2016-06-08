@@ -8,6 +8,7 @@
     "start": "concurrent --kill-others \"better-npm-run watch-client\" \"better-npm-run start-dev\"",
     "watch-client": "better-npm-run watch-client",
     "start-dev": "better-npm-run start-dev",
+    "start-prod": "concurrent --kill-others \"webpack --config ./frontend/build_config/webpack.config.js\" \"better-npm-run start-prod\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "betterScripts": {
@@ -22,6 +23,13 @@
       "command": "nodemon --watch ./frontend/build_config --delay 250ms --exec webpack-dev-server --progress --colors --config ./frontend/build_config/webpack.config.js",
       "env": {
         "NODE_ENV": "development"
+      }
+    },
+    "start-prod": {
+      "command": "node .",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": 4545
       }
     }
   },
@@ -61,6 +69,7 @@
     "draft-js-toolbar-plugin": "^1.0.5",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "^0.9.1",
+    "forever": "^0.15.2",
     "history": "^1.17.0",
     "immutable": "^3.8.1",
     "is-html": "^1.0.0",
