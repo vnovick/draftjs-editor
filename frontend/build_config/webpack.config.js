@@ -21,29 +21,30 @@ const autoprefix = {
   ],
 };
 
-module.exports = {
+var isDev = process.env.NODE_ENV === 'development';
+
+
+var devEntries =  isDev ? ['webpack-dev-server/client?http://localhost:8080'] : []
+
+var settings = {
     resolve: {
         modulesDirectories: ["node_modules", "bower_components", "./frontend"],
         extensions: ["", ".js", ".min.js", ".scss", ".css"]
     },
     entry: {
-        app: [
-            'webpack-dev-server/client?http://localhost:8080',
-            './frontend/app.js',
-            './frontend/styles/app.scss'
-        ]
+        poc: devEntries.concat([
+            './frontend/poc/app.js',
+            './frontend/poc/styles/app.scss'
+        ]),
+        app: devEntries.concat([
+            './frontend/app.js'
+        ])
     },
     devtool: "source-map",
     output: {
         publicPath: 'public/assets',
         path: './public/assets',
-        filename: 'bundle.js',
-    },
-    devServer: {
-        contentBase: "public",
-        inline: true,
-        hot: true,
-        watch: true
+        filename: '[name].js',
     },
     module: {
         loaders: [
@@ -96,7 +97,6 @@ module.exports = {
         postcssSvgGo,
     ],
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin(),
       new webpack.ProvidePlugin({
         React: 'react',
@@ -110,3 +110,18 @@ module.exports = {
       new ExtractTextPlugin("styles.css")
     ]
 };
+if (isDev){
+  Object.assign(settings, {
+    devServer: {
+        contentBase: "public",
+        inline: true,
+        hot: true,
+        watch: true
+    },
+    plugins: settings.plugins.concat([new webpack.HotModuleReplacementPlugin()])
+  })
+}
+console.log(settings);
+module.exports = settings;
+
+

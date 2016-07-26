@@ -1,14 +1,19 @@
 /**
  * Created by vladimirn on 11/28/15.
  */
-export default ()=>{
+export default (bundleName)=>{
     let isDev = process.env.NODE_ENV === 'development';
     let bundle = {
-        js: 'bundle.js',
-        css: 'styles.css'
+        poc: {
+          js: 'poc.js',
+          css: 'styles.css'
+        },
+        app: {
+          js: 'app.js'
+        }
     };
-    for (var key in bundle) {
-        bundle[key] = isDev ? `http://localhost:8080/public/assets/${bundle[key]}` : `assets/${bundle[key]}`;
+    for (var key in bundle[bundleName]) {
+        bundle[bundleName][key] = isDev ? `http://localhost:8080/public/assets/${bundle[bundleName][key]}` : `assets/${bundle[bundleName][key]}`;
     }
-    return bundle
+    return bundle[bundleName]
 }

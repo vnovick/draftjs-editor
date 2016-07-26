@@ -4,5 +4,6 @@
 import appHandler from './handlers/app-handler';
 import home from './controllers/homeController'
 export default (app) => {
-    app.get('/', appHandler, home);
+    app.get('/', appHandler.bind(null, 'app'), home);
+    app.get('/poc', appHandler.bind(null, 'poc'), home);
 }

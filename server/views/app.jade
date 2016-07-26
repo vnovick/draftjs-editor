@@ -4,10 +4,10 @@ html(lang='en')
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title React Redux Skeleton
-    link(href='#{bundle.css}', rel='stylesheet')
+    link(href='#{bundle.css ? bundle.css : ''}', rel='stylesheet')
     script.
       window.pdo=!{JSON.stringify(pdo)}
   body
     #app
-      !{reactDom}
+    .stewie-editor
     script(src='#{bundle.js}')

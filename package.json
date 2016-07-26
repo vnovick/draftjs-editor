@@ -8,7 +8,7 @@
     "start": "concurrent --kill-others \"better-npm-run watch-client\" \"better-npm-run start-dev\"",
     "watch-client": "better-npm-run watch-client",
     "start-dev": "better-npm-run start-dev",
-    "start-prod": "concurrent --kill-others \"webpack --config ./frontend/build_config/webpack.config.js\" \"better-npm-run start-prod\"",
+    "start-prod": "webpack --config ./frontend/build_config/webpack.config.js && better-npm-run start-prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "betterScripts": {
@@ -97,6 +97,7 @@
     "redux-thunk": "^1.0.3",
     "request": "^2.72.0",
     "sass-loader": "^3.2.0",
+    "stewie-editor": "^0.1.6",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
