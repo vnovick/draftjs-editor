@@ -8,7 +8,7 @@
     "start": "concurrent --kill-others \"better-npm-run watch-client\" \"better-npm-run start-dev\"",
     "watch-client": "better-npm-run watch-client",
     "start-dev": "better-npm-run start-dev",
-    "start-prod": "webpack --config ./frontend/build_config/webpack.config.js && better-npm-run start-prod",
+    "start-prod": "NODE_ENV=production webpack --config ./frontend/build_config/webpack.config.js && better-npm-run start-prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "betterScripts": {
