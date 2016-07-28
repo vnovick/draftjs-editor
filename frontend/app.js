@@ -6,9 +6,11 @@ const mockInitialState = JSON.parse('{"entityMap":{"0":{"type":"ALIGNMENT","muta
 const config  =  [{
   subscribers: {
     api: (api, id) => { window.editor = { ...window.editor, [id]: api } },
-    wordCount: (words) => { console.log(words) },
-    charCount: (chars) =>   { console.log(chars) },
-    state: ({ state }) => {
+    wordCount: (words) => { console.log('word count', words) },
+    charCount: (chars) =>   { console.log('character count: ', chars) },
+    state: (state) => {
+      console.log("Editor State (state = json, innerState = DraftJS immutable state)", state);
+      const { state: jsonState } = state;
       const existingElement = document.querySelector('.preview-editor');
       if (existingElement) {
         existingElement.remove();
@@ -16,9 +18,8 @@ const config  =  [{
       var d = document.createElement('div');
       d.classList.add('preview-editor');
       document.body.appendChild(d);
-      console.log(state)
       EditorFactory('.preview-editor', {
-        initialState: state
+        initialState: jsonState
       }).mount();
     }
   }
