@@ -9,5 +9,11 @@ html(lang='en')
       window.pdo=!{JSON.stringify(pdo)}
   body
     #app
+    h1.title Editor to Test
     .stewie-editor
+      .loader loading.....
+    .title
+      h1 Preview Editor
+      h4 (This editor simulates save json and loading editor in runtime)
+      .preview-editor loading....
     script(src='#{bundle.js}')

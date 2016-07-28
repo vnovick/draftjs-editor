@@ -8,7 +8,19 @@ const config  =  [{
     api: (api, id) => { window.editor = { ...window.editor, [id]: api } },
     wordCount: (words) => { console.log(words) },
     charCount: (chars) =>   { console.log(chars) },
-    state: (state) => { console.log(state) }
+    state: ({ state }) => {
+      const existingElement = document.querySelector('.preview-editor');
+      if (existingElement) {
+        existingElement.remove();
+      }
+      var d = document.createElement('div');
+      d.classList.add('preview-editor');
+      document.body.appendChild(d);
+      console.log(state)
+      EditorFactory('.preview-editor', {
+        initialState: state
+      }).mount();
+    }
   }
 }];
 
