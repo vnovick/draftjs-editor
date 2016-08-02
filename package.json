@@ -97,7 +97,7 @@
     "redux-thunk": "^1.0.3",
     "request": "^2.72.0",
     "sass-loader": "^3.2.0",
-    "stewie-editor": "^0.1.6",
+    "stewie-editor": "^0.1.7",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
