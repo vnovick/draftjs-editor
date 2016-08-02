@@ -9,8 +9,10 @@ export default (bundleName)=>{
           css: 'styles.css'
         },
         app: {
-          js: 'app.js',
-          css: 'styles.css'
+          js: 'app.js'
+        },
+        preview: {
+          js: 'preview.js'
         }
     };
     for (var key in bundle[bundleName]) {

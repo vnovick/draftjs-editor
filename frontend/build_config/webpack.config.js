@@ -38,6 +38,9 @@ var settings = {
         ]),
         app: devEntries.concat([
             './frontend/app.js'
+        ]),
+        preview: devEntries.concat([
+          './frontend/preview/app.js'
         ])
     },
     devtool: "source-map",
